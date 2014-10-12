@@ -1,7 +1,7 @@
 def count_vowels(string):
     list_with_vowels = "aeiouy"
     sum = 0
-    string.lower()
+    string = string.lower()
     for x in range(0, len(string)):
         for y in range(0, len(list_with_vowels)):
             if(string[x] == list_with_vowels[y]):

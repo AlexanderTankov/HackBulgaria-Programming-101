@@ -11,6 +11,9 @@ def count_substrings(haystack, needle):
                     result += 1
                     count = 0
                     temp = 0
+            else:
+                count = 0
+                temp = 0
             break
     return result
 
