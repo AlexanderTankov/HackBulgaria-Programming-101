@@ -1,0 +1,102 @@
+Matrix Bombing
+
+You are givn a NxM matrix of integer numbers.
+
+We can drop a bomb at any place in the matrix, which has the following effect:
+
+All of the 8 neighbours of the target are reduced by the value of the target.
+Numbers can be reduced only to 0 - they cannot go to negative.
+For example, if we have the following matrix:
+
+10 10 10
+10  9  10
+10 10 10
+and we drop bomb at 9, this will result in the following matrix:
+
+1 1 1
+1 9 1
+1 1 1
+Implement a function called matrix_bombing_plan(m).
+
+The function should return a dictionary where keys are positions in the matrix, represented as tuples, and values are the total sum of the elements of the matrix, after the bombing at that position.
+
+The positions are the standard indexes, starting from (0, 0)
+
+For example if we have the following matrix:
+
+1 2 3
+4 5 6
+7 8 9
+and run the function, we will have:
+
+{(0, 0): 42,
+ (0, 1): 36,
+ (0, 2): 37,
+ (1, 0): 30,
+ (1, 1): 15,
+ (1, 2): 23,
+ (2, 0): 29,
+ (2, 1): 15,
+ (2, 2): 26}
+We can see that if we drop the bomb at (1, 1) or (2, 1), we will do the most damage!
+
+
+
+Integer prime factorization
+
+Given an integer n, we can factor it in the following form:
+
+n = p1^a1 * p2^a2 * ... * pn^an
+Where each p is a prime number and each a is an integer and p^a means p to the power of a.
+
+This is called prime factorization.
+
+Lets see few examples
+
+10 = 2^1 * 5^1 25 = 5^2 356 = 2^2 * 89 ^ 1
+Implement a function, called prime_factorization(n) which takes an integer and returns a list of tuples (pi, ai), which is the result of the factorization.
+
+The list should be sorted in increasing order of the prime numbers.
+
+Signature
+
+def prime_factorization(n):
+    # Implementation
+Test examples
+
+>>> prime_factorization(10)
+[(2, 1), (5, 1)] # This is 2^1 * 5^1
+>>> prime_factorization(14)
+[(2, 1), (7, 1)]
+>>> prime_factorization(356)
+[(2, 2), (89, 1)]
+>>> prime_factorization(89)
+[(89, 1)] # 89 is a prime number
+>>> prime_factorization(1000)
+[(2, 3), (5, 3)]
+
+
+
+
+Calculate coins
+
+This problem is from the Python 2013 course in FMI
+
+Implement a function, called calculate_coins(sum) where sum is a floating point number.
+
+The function should return a dictionary, that represents a way to get the sum with minimal number of coins.
+
+The coins that we can use are with values 1,2,100,5,10,50,20.
+
+Check the examples below.
+
+Signature
+
+def calculate_coins(sum):
+    # Implementation
+Test examples
+
+>>> calculate_coins(0.53)
+{1: 1, 2: 1, 100: 0, 5: 0, 10: 0, 50: 1, 20: 0} # We pay with one coin of value 50 and two coins of value 2 and one coin of value 1 - that's the minimal number of coins to get to 0.53
+>>> calculate_coins(8.94)
+{1: 0, 2: 2, 100: 8, 5: 0, 10: 0, 50: 1, 20: 2}
