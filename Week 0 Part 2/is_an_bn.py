@@ -16,12 +16,3 @@ def is_an_bn(word):
             if word[char] == 'b':
                 num_of_b += 1
     return num_of_a == num_of_b
-
-
-print(is_an_bn(""))
-print(is_an_bn("rado"))
-print(is_an_bn("aaabb"))
-print(is_an_bn("aaabbb"))
-print(is_an_bn("aabbaabb"))
-print(is_an_bn("bbbaaa"))
-print(is_an_bn("aaaaabbbbb"))

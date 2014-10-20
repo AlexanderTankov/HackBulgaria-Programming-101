@@ -26,18 +26,3 @@ def nth_fib_lists_snd(listA, listB, n):
             result = a + b
             a = b
     return result
-
-
-print(nth_fib_lists([1], [2], 1))
-print(nth_fib_lists([1], [2], 2))
-print(nth_fib_lists([1, 2], [1, 3], 3))
-print(nth_fib_lists([], [1, 2, 3], 4))
-print(nth_fib_lists([], [], 100))
-print(nth_fib_lists([1, 2], [3, 4], 5))
-
-print(nth_fib_lists_snd([1], [2], 1))
-print(nth_fib_lists_snd([1], [2], 2))
-print(nth_fib_lists_snd([1, 2], [1, 3], 3))
-print(nth_fib_lists_snd([], [1, 2, 3], 4))
-print(nth_fib_lists_snd([], [], 100))
-print(nth_fib_lists_snd([1, 2], [3, 4], 5))

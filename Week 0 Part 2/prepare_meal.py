@@ -18,7 +18,3 @@ def prepare_meal(number):
     for time_spam in range(0, count_spam):
         temp_result_spam += "spam "
     return temp_result_spam + temp_result_eggs
-
-print(prepare_meal(5))
-print(prepare_meal(15))
-print(prepare_meal(45))
