@@ -59,11 +59,3 @@ def what_is_my_sign(day, month):
             return "Capricorn"
         else:
             return "Sagittarius"
-
-print(what_is_my_sign(5, 8))
-print(what_is_my_sign(29, 1))
-print(what_is_my_sign(30, 6))
-print(what_is_my_sign(31, 5))
-print(what_is_my_sign(2, 2))
-print(what_is_my_sign(8, 5))
-print(what_is_my_sign(9, 1))

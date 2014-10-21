@@ -5,4 +5,5 @@ class Weapon:
         self.damage = damage
         self.critical_strike_percent = critical_strike_percent
 
-    
+    def critical_hit(self):
+        pass

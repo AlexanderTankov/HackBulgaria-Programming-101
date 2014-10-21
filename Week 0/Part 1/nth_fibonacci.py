@@ -9,24 +9,14 @@ def nth_fibonacci(n):
 
 def nth_fibonacci_second(n):
     a = 0
-    sum = 1
+    result = 1
     if n == 0:
         return 0
     elif n == 1 or n == 2:
         return 1
 
     for digit in range(1, n):
-        b = sum
-        sum = a + b
+        b = result
+        result = a + b
         a = b
-    return sum
-
-print(nth_fibonacci(1))
-print(nth_fibonacci(2))
-print(nth_fibonacci(3))
-print(nth_fibonacci(10))
-
-print(nth_fibonacci_second(1))
-print(nth_fibonacci_second(2))
-print(nth_fibonacci_second(3))
-print(nth_fibonacci_second(10))
+    return result

@@ -7,9 +7,3 @@ def is_prime(n):
         if n % numbers == 0:
             return False
     return True
-
-print(is_prime(1))
-print(is_prime(2))
-print(is_prime(8))
-print(is_prime(11))
-print(is_prime(-10))

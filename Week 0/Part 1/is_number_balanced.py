@@ -19,11 +19,3 @@ def is_number_balanced(n):
         left_sum += n % 10
         n //= 10
     return left_sum == right_sum
-
-print(is_number_balanced(9))
-print(is_number_balanced(11))
-print(is_number_balanced(13))
-print(is_number_balanced(121))
-print(is_number_balanced(4518))
-print(is_number_balanced(28471))
-print(is_number_balanced(1238033))

@@ -28,15 +28,3 @@ def is_int_palindrome_snd(n):
         new_number += n % 10
         n //= 10
     return temp == new_number
-
-print(is_int_palindrome(1))
-print(is_int_palindrome(42))
-print(is_int_palindrome(100001))
-print(is_int_palindrome(999))
-print(is_int_palindrome(123))
-
-print(is_int_palindrome_snd(1))
-print(is_int_palindrome_snd(42))
-print(is_int_palindrome_snd(100001))
-print(is_int_palindrome_snd(999))
-print(is_int_palindrome_snd(123))

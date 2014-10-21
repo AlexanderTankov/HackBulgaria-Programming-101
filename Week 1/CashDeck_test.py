@@ -6,7 +6,7 @@ class CashDeskTest(unittest.TestCase):
 
     def test_total_zero_when_new_instance_made(self):
         new_cash_desk = CashDeck()
-        self.assertEqual(0, new_cash_desk())
+        self.assertEqual(0, new_cash_desk.total())
 
     def test_total_after_money_take(self):
         new_cash_desk = CashDeck()

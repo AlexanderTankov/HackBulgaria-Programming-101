@@ -13,5 +13,8 @@ class TestWeapon(unittest.TestCase):
         self.assertEqual(self.axe.damage, 25)
         self.assertEqual(self.axe.critical_strike_percent, 0.2)
 
+    def test_critical_hit(self):
+        self.assertTrue(self.axe.critical_hit())
+
 if __name__ == '__main__':
     unittest.main()

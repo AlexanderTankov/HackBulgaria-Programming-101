@@ -11,7 +11,3 @@ def calculate_coins(sum):
                 if sum != temp:
                     break
     return coins
-
-
-print(calculate_coins(0.53))
-print(calculate_coins(8.94))

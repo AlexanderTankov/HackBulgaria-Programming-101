@@ -48,10 +48,3 @@ class CashDeck():
             del list_for_sort[pos_max_elem]
         result.append(list_for_sort[0])
         return result
-
-
-my_cach_desk = CashDeck()
-my_cach_desk.take_money({1: 2, 100: 3})
-print(my_cach_desk.total())
-#my_cach_desk.can_withdraw_money(30) #False
-my_cach_desk.can_withdraw_money(70) #True
