@@ -2,31 +2,30 @@ import unittest
 
 from CashDeck import CashDeck
 
+
 class CashDeskTest(unittest.TestCase):
 
+    def setUp(self):
+        self.new_cash_desk = CashDeck()
+
     def test_total_zero_when_new_instance_made(self):
-        new_cash_desk = CashDeck()
-        self.assertEqual(0, new_cash_desk.total())
+        self.assertEqual(self.new_cash_desk.total(), 0)
 
     def test_total_after_money_take(self):
-        new_cash_desk = CashDeck()
-        new_cash_desk.take_money({1: 2, 100: 3})
-        self.assertEqual(302, new_cash_desk.total())
+        self.new_cash_desk.take_money({1: 2, 100: 3})
+        self.assertEqual(self.new_cash_desk.total(), 302)
 
     def test_can_withdraw_all_money(self):
-        new_cash_desk = CashDeck()
-        new_cash_desk.take_money({1: 2, 100: 3})
-        self.assertTrue(new_cash_desk.can_withdraw_money(302))
+        self.new_cash_desk.take_money({1: 2, 100: 3})
+        self.assertTrue(self.new_cash_desk.can_withdraw_money(302))
 
     def test_can_withdraw_not_all_money(self):
-        new_cash_desk = CashDeck()
-        new_cash_desk.take_money({1: 2, 100: 3})
-        self.assertTrue(new_cash_desk.can_withdraw_money(301))
+        self.new_cash_desk.take_money({1: 2, 100: 3})
+        self.assertTrue(self.new_cash_desk.can_withdraw_money(301))
 
-    def test_can_withdraw_cant_withdraw(self):
-        new_cash_desk = CashDeck()
-        new_cash_desk.take_money({1: 2, 100: 3})
-        self.assertFalse(new_cash_desk.can_withdraw_money(105))
+    def test_cant_withdraw(self):
+        self.new_cash_desk.take_money({1: 2, 100: 3})
+        self.assertFalse(self.new_cash_desk.can_withdraw_money(105))
 
 if __name__ == '__main__':
     unittest.main()
