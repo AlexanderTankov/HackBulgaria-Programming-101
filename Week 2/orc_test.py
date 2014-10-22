@@ -14,5 +14,8 @@ class TestOrc(unittest.TestCase):
         with self.assertRaises(ValueError):
             Orc("Bron", 100, 2.3)
 
+    def test_attack(self):
+        self.assertEqual(self.bron_orc.attack(), self.bron_orc.damage)
+        
 if __name__ == '__main__':
     unittest.main()

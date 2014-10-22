@@ -14,14 +14,14 @@ class TestWeapon(unittest.TestCase):
         self.assertEqual(self.axe.critical_strike_percent, 0.2)
 
     def test_critical_hit(self):
-        flag_True = False
-        flag_False = False
+        flag_true = False
+        flag_false = False
         for i in range(0, 1000):
             if self.axe.critical_hit():
-                flag_True = True
+                flag_true = True
             else:
-                flag_False = True
-        self.assertTrue(flag_False and flag_True)
+                flag_false = True
+        self.assertTrue(flag_false and flag_true)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,7 @@
 import unittest
 
 from entity import Entity
+from weapon import Weapon
 
 
 class TestEntity(unittest.TestCase):
@@ -45,6 +46,27 @@ class TestEntity(unittest.TestCase):
         temp_heal = self.bron_entity.take_healing(50)
         self.assertTrue(self.bron_entity.take_healing(50))
         self.assertTrue(temp_heal)
+
+    def test_has_weapon_when_dont_have(self):
+        self.assertFalse(self.bron_entity.has_weapon())
+
+    def test_has_weapon_when_have(self):
+        axe = Weapon("Mighty Axe", 25, 0.2)
+        self.bron_entity.equip_weapon(axe)
+        self.assertTrue(self.bron_entity.has_weapon())
+
+    def test_equip_weapon(self):
+        axe = Weapon("Mighty Axe", 25, 0.2)
+        self.bron_entity.equip_weapon(axe)
+        self.assertEqual(self.bron_entity.weapon, axe)
+
+    def test_attack_when_entity_dont_have_weapon(self):
+        self.assertEqual(self.bron_entity.damage, 0)
+
+    def test_attack_when_entity_have_weapon(self):
+        axe = Weapon("Mighty Axe", 25, 0.2)
+        self.bron_entity.equip_weapon(axe)
+        self.assertEqual(self.bron_entity.damage, self.bron_entity.attack())
 
 if __name__ == '__main__':
     unittest.main()
