@@ -35,7 +35,12 @@ class Entity():
 
     def equip_weapon(self, weapon):
         self.weapon = weapon
-        self.damage = weapon.damage
 
     def attack(self):
-        return self.damage
+        if not self.weapon is None:
+            if self.weapon.is_critical_hit():
+                return self.weapon.damage * 2
+            else:
+                return self.weapon.damage
+        else:
+            return 0

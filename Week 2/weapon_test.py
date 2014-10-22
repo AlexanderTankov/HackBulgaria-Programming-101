@@ -17,7 +17,7 @@ class TestWeapon(unittest.TestCase):
         flag_true = False
         flag_false = False
         for i in range(0, 1000):
-            if self.axe.critical_hit():
+            if self.axe.is_critical_hit():
                 flag_true = True
             else:
                 flag_false = True

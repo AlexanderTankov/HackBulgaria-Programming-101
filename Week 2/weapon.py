@@ -1,16 +1,12 @@
 import random
 
 
-class Weapon:
+class Weapon():
 
     def __init__(self, type, damage, critical_strike_percent):
         self.type = type
         self.damage = damage
         self.critical_strike_percent = critical_strike_percent
 
-    def critical_hit(self):
-        if random.random() < self.critical_strike_percent:
-            self.damage *= 2
-            return True
-        else:
-            return False
+    def is_critical_hit(self):
+        return random.random() < self.critical_strike_percent

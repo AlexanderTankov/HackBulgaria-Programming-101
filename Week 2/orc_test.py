@@ -16,6 +16,6 @@ class TestOrc(unittest.TestCase):
 
     def test_attack(self):
         self.assertEqual(self.bron_orc.attack(), self.bron_orc.damage)
-        
+
 if __name__ == '__main__':
     unittest.main()
