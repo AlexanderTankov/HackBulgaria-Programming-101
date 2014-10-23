@@ -32,9 +32,15 @@ class TestDungeon(unittest.TestCase):
         self.assertFalse(self.my_map.spawn("player_3", bron_orc))
 
     def test_move_on_map(self):
+        bron_orc = Orc("Bron", 100, 1.3)
+        bron_hero = Hero("Bron", 100, "DragonSlayer")
+        self.my_map.spawn("player_1", bron_orc)
+        self.my_map.spawn("player_2", bron_hero)
+        self.assertFalse(self.my_map.move("player_1", "left"))
         self.assertTrue(self.my_map.move("player_1", "right"))
         self.assertFalse(self.my_map.move("player_1", "up"))
         self.assertFalse(self.my_map.move("player_1", "right"))
+        self.assertFalse(self.my_map.move("player_2", "down"))
         self.assertTrue(self.my_map.move("player_2", "up"))
 
 if __name__ == '__main__':
