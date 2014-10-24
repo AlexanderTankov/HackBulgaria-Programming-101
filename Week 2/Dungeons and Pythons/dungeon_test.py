@@ -77,6 +77,12 @@ class TestDungeon(unittest.TestCase):
         self.assertEqual(self.my_map.print_map(), "O.##......\n#.##..###.\n#.###.###.\n#.....###.\n###.#####H\n")
 
     def test_battle(self):
+        orc = Orc("Bron", 100, 1.3)
+        hero = Hero("Bron", 100, "DragonSlayer")
+        axe = Weapon("Mighty Axe", 25, 0.2)
+        orc.weapon = axe
+        self.my_map.spawn("player_1", orc)
+        self.my_map.spawn("player_2", hero)
         self.my_map.move("player_1", "right")
         self.my_map.move("player_1", "left")
         self.my_map.move("player_1", "right")
@@ -95,7 +101,7 @@ class TestDungeon(unittest.TestCase):
         self.my_map.move("player_2", "left")
         self.my_map.move("player_2", "left")
         self.my_map.move("player_1", "right")
-        self.assertEqual(self.my_map.print_map(), "..##......\n#.##..###.\n#.###.###.\n#..H..###.\n###.#####.\n")
+        self.assertEqual(self.my_map.print_map(), "..##......\n#.##..###.\n#.###.###.\n#..O..###.\n###.#####.\n")
 
 
 if __name__ == '__main__':
