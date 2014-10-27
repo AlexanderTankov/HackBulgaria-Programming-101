@@ -104,5 +104,7 @@ class TestPlaylist(unittest.TestCase):
         self.test_playlist.add_song(self.test_new_song)
         self.test_playlist.save("json_playlist.json")
 
+    def test_load(self):
+        pass
 if __name__ == '__main__':
     unittest.main()

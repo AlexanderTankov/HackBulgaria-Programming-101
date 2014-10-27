@@ -1,15 +1,27 @@
 import json
+from song import Song
 
 
 class Playlist():
 
     @staticmethod
     def load(file_name):
-        filename = "{}".format(file_name)
-        my_json_file = open(filename, 'r')
-        content = my_json_file.read()
-        my_json_file.close()
-        return content
+        my_file = open(file_name, 'r')
+        my_playlist = json.load(my_file)
+        my_file.close()
+        result = Playlist(my_playlist["name"])
+        song_arr = my_playlist["songs"]
+        for song in song_arr:
+            temp_song = Song(
+                song["title"],
+                song["artist"],
+                song["album"],
+                song["rating"],
+                song["length"],
+                song["bitrate"]
+            )
+            result.songs.append(temp_song)
+        return result
 
     def __init__(self, name):
         self.name = name
