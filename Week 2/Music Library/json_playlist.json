@@ -1,1 +1,1 @@
-{"songs": [{"title": "Hells Bells", "bitrate": 256, "album": "Hells Bells", "length": 309, "rating": 5, "artist": "ACDC"}, {"title": "November rain", "bitrate": 1, "album": "Hells Bells", "length": 240, "rating": 5, "artist": "Guns'n'Roses"}], "name": "Rock'n'roll"}
+{"songs": [{"artist": "ACDC", "title": "Hells Bells", "album": "Hells Bells", "bitrate": 256, "rating": 5, "length": 309}, {"artist": "Guns'n'Roses", "title": "November rain", "album": "Hells Bells", "bitrate": 1, "rating": 5, "length": 240}], "name": "Rock'n'roll"}
