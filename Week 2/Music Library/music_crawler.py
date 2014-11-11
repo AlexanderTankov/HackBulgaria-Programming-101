@@ -47,18 +47,18 @@ def start_playlist(array_of_songs):
             pygame.mixer.music.load(elem)
             pygame.mixer.music.play()
             while pygame.mixer.music.get_busy():
-                temp_imput = input()
-                if temp_imput.lower() == "next":
-                    break
-                elif temp_imput.lower() == "stop":
+                    temp_imput = input("chose command:\nnext - for next song, stop - for stop music or exit\n")
+                    if temp_imput.lower() == "next":
+                        break
+                    elif temp_imput.lower() == "stop":
+                        pygame.mixer.music.stop()
+                        return True
+                    elif temp_imput.lower() == "exit":
+                        pygame.mixer.music.stop()
+                        return False
+                    else:
+                        print("This command is not valid")
                     pygame.mixer.music.stop()
-                    return True
-                elif temp_imput.lower() == "exit":
-                    pygame.mixer.music.stop()
-                    return False
-                else:
-                    print("This command is not valid")
-            pygame.mixer.music.stop()
 
 if __name__ == '__main__':
     crawler = MusicCrawler("/home/alexandar/Documents/Programming-101 Hack BG/Week 2/Music Library")
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     while global_flag:
         temp_flag = True
         while temp_flag:
-            input_str = input()
+            input_str = input("chose command:\nplay all songs,number of the song that you want to hear or exit\n")
             if input_str.lower() == "play all songs":
                 if not start_playlist(songs_arr):
                     temp_flag = False
