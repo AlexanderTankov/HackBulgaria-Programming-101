@@ -1,4 +1,3 @@
-import requests
 import sqlite3
 from Client import Client
 
@@ -18,28 +17,23 @@ def create_clients_table():
 
 
 def change_message(new_message, logged_user):
-    update_sql = "UPDATE clients SET message = '%s' WHERE id = '%s'" % (new_message, logged_user.get_id())
-    cursor.execute(update_sql)
+    cursor.execute("UPDATE clients SET message = ? WHERE id = ?", (new_message, logged_user.get_id()))
     conn.commit()
     logged_user.set_message(new_message)
 
 
 def change_pass(new_pass, logged_user):
-    update_sql = "UPDATE clients SET password = '%s' WHERE id = '%s'" % (new_pass, logged_user.get_id())
-    cursor.execute(update_sql)
+    cursor.execute("UPDATE clients SET password = ? WHERE id = ? VALUES(?,?)", (new_pass, logged_user.get_id()))
     conn.commit()
 
 
 def register(username, password):
-    insert_sql = "insert into clients (username, password) values ('%s', '%s')" % (username, password)
-    cursor.execute(insert_sql)
+    cursor.execute("INSERT INTO clients (username, password)  VALUES(?,?)", (username, password))
     conn.commit()
 
 
 def login(username, password):
-    select_query = "SELECT id, username, balance, message FROM clients WHERE username = '%s' AND password = '%s' LIMIT 1" % (username, password)
-    
-    cursor.execute(select_query)
+    cursor.execute("SELECT id, username, balance, message FROM clients WHERE username = ? AND password = ? VALUES(?,?) LIMIT 1", (username, password))
     user = cursor.fetchone()
 
     if(user):
