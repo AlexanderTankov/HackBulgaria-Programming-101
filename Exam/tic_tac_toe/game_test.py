@@ -17,8 +17,8 @@ class TestGame(unittest.TestCase):
         self.assertFalse(self.test_game.check_left_diagonal("Y"))
 
     def test_check_right_diagonal_is_true(self):
-        self.test_game._map = ['.', '.', 'X', '.', 'X', '.', 'X', '.', '.']
-        self.assertTrue(self.test_game.check_right_diagonal("X"))
+        self.test_game._map = ['.', 'X', 'O', 'X', 'O', 'O', 'O', 'X', 'X']
+        self.assertTrue(self.test_game.check_right_diagonal("O"))
 
     def test_check_right_diagonal_is_false_with_worng_symbol(self):
         self.test_game._map = ['.', '.', 'X', '.', 'X', '.', 'X', '.', '.']

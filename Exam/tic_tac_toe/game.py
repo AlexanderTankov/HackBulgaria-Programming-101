@@ -66,7 +66,7 @@ class Game:
                 return False
         return True
 
-    # def set_O_from_computer(self):
+    # def set_O_from_computer_imposible(self):
     #     if win_if_possible():
     #         pass
 
@@ -80,12 +80,12 @@ class Game:
 def main():
     my_game = Game()
     print(my_game)
-    while not (my_game.is_anyone_win("X") and not my_game.is_anyone_win("O")) or my_game.is_have_not_free_cells():
+    while (not my_game.is_anyone_win("X") and not my_game.is_anyone_win("O")) or my_game.is_have_not_free_cells():
         turn = input("Its your turn :) Enter the num from 1 to 9:\n?> ")
-        if my_game.set_X_from_player_turn(int(turn)):
-            if not my_game.set_O_from_computer_easy():
-                print(my_game)
-                return
+        if my_game.set_X_from_player_turn(int(turn)) and not my_game.is_anyone_win("X"):
+                if not my_game.set_O_from_computer_easy():
+                    print(my_game)
+                    break
         print(my_game)
     if my_game.is_anyone_win("X"):
         print("You win. :) Congratulations")
