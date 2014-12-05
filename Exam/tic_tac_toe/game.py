@@ -137,11 +137,9 @@ class Game:
 
     def set_O_from_computer_imposible(self):
         if self.win_if_possible("O"):
-            print("1")
             return True
 
         if self.stop_player_from_winning_if_possible("X"):
-            print("2")
             return True
 
         return self.set_O_from_computer_easy()
