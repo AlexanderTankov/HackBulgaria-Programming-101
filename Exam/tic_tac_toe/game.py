@@ -87,6 +87,12 @@ def main():
                 print(my_game)
                 return
         print(my_game)
+    if my_game.is_anyone_win("X"):
+        print("You win. :) Congratulations")
+    elif my_game.is_anyone_win("O"):
+        print("You lose. :(")
+    else:
+        print("Drawn")
 
 
 if __name__ == '__main__':

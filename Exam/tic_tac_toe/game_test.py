@@ -60,5 +60,13 @@ class TestGame(unittest.TestCase):
         self.test_game.set_X_from_player_turn(1)
         self.assertEqual(self.test_game._map[0], "X")
 
+    def test_set_O_from_computer_easy(self):
+        flag = False
+        for x in range(1, 10):
+            self.test_game._map = ['X', '.', 'X', '.', 'X', '.', '.', 'X', '.']
+            if self.test_game.set_O_from_computer_easy():
+                flag = True
+        self.assertTrue(flag)
+
 if __name__ == '__main__':
     unittest.main()
