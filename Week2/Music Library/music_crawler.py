@@ -61,10 +61,11 @@ def start_playlist(array_of_songs):
                     pygame.mixer.music.stop()
 
 if __name__ == '__main__':
-    crawler = MusicCrawler("/home/alexandar/Documents/Programming-101 Hack BG/Week 2/Music Library")
+    crawler = MusicCrawler("/home/alexandar/Documents/Programming-101/Week2/Music Library")
     playlist = crawler.generate_playlist()
     songs_arr = []
     for elem in playlist.songs:
+        print(elem.artist, elem.title)
         songs_arr.append("{} - {}.mp3".format(elem.artist, elem.title))
 
     print("Playlist:")
