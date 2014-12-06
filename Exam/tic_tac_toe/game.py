@@ -135,6 +135,78 @@ class Game:
 
         return False
 
+    def check_all_is_free_withoute_one(self, num_of_not_free_cell):
+        is_all_free = True
+        for x in range(0, 9):
+            if x == num_of_not_free_cell:
+                break
+            elif self._map[x] != ".":
+                is_all_free = False
+        return is_all_free
+
+    def enemy_start_in_corner(self, enemy_player_symbol):
+        if self._map[0] == enemy_player_symbol:
+            return self.check_all_is_free_withoute_one(0)
+        if self._map[2] == enemy_player_symbol:
+            return self.check_all_is_free_withoute_one(2)
+        if self._map[6] == enemy_player_symbol:
+            return self.check_all_is_free_withoute_one(6)
+        if self._map[8] == enemy_player_symbol:
+            return self.check_all_is_free_withoute_one(8)
+        return False
+
+    def enemy_start_in_center(self, enemy_player_symbol):
+        if self._map[4] == enemy_player_symbol:
+            return self.check_all_is_free_withoute_one(4)
+        return False
+
+    def counterPlayerStrategyIfPossible(self, enemy_player_symbol):
+        player_symbol = "O"
+        if enemy_player_symbol == "O":
+            player_symbol = "X"
+
+        # strategy 1
+        if (self._map[0] == enemy_player_symbol and self._map[8] == enemy_player_symbol) or\
+           (self._map[2] == enemy_player_symbol and self._map[6] == enemy_player_symbol):
+            position = random.choice([1, 3, 5, 7])
+            if self.is_cell_free(position):
+                self._map[position] = player_symbol
+                return True
+
+        # strategy 2
+        if self._map[2] == enemy_player_symbol and self._map[3] == enemy_player_symbol:
+            if self.is_cell_free(0):
+                self._map[0] = player_symbol
+                return True
+
+        if self._map[5] == enemy_player_symbol and self._map[6] == enemy_player_symbol:
+            if self.is_cell_free(6):
+                self._map[6] = player_symbol
+                return True
+
+        if self._map[0] == enemy_player_symbol and self._map[5] == enemy_player_symbol:
+            if self.is_cell_free(8):
+                self._map[8] = player_symbol
+                return True
+
+        if self._map[3] == enemy_player_symbol and self._map[8] == enemy_player_symbol:
+            if self.is_cell_free(2):
+                self._map[2] = player_symbol
+                return True
+
+        # strategy 3
+        if self.enemy_start_in_corner(enemy_player_symbol):
+            self._map[4] = player_symbol
+            return True
+
+        #strategy 4
+        if self.enemy_start_in_center(enemy_player_symbol):
+            position = random.choice([0, 2, 6, 8])
+            self._map[position] = player_symbol
+            return True
+
+        return False
+
     def set_O_from_computer_imposible(self):
         if self.win_if_possible("O"):
             return True
@@ -142,15 +214,16 @@ class Game:
         if self.stop_player_from_winning_if_possible("X"):
             return True
 
+        if self.counterPlayerStrategyIfPossible("X"):
+            return True
+
         return self.set_O_from_computer_easy()
-        # if self.counterPlayerStrategyIfPossible():
-        #     pass
 
 
 def main():
     my_game = Game()
     print(my_game)
-    while (not my_game.is_anyone_win("X") and not my_game.is_anyone_win("O")) or my_game.is_have_not_free_cells():
+    while (not my_game.is_anyone_win("X") and not my_game.is_anyone_win("O")) and not my_game.is_have_not_free_cells():
         turn = input("Its your turn :) Enter the num from 1 to 9:\n?> ")
         if my_game.set_X_from_player_turn(int(turn)) and not my_game.is_anyone_win("X"):
                 if not my_game.set_O_from_computer_imposible():
