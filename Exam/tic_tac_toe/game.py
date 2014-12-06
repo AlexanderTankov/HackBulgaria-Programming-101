@@ -139,7 +139,7 @@ class Game:
         is_all_free = True
         for x in range(0, 9):
             if x == num_of_not_free_cell:
-                break
+                pass
             elif self._map[x] != ".":
                 is_all_free = False
         return is_all_free
@@ -160,12 +160,15 @@ class Game:
             return self.check_all_is_free_withoute_one(4)
         return False
 
-    def counterPlayerStrategyIfPossible(self, enemy_player_symbol):
+    def get_opposite_symbol(self, enemy_player_symbol):
         player_symbol = "O"
         if enemy_player_symbol == "O":
             player_symbol = "X"
+        return player_symbol
 
-        # strategy 1
+    def strategy_tripple_with_opposite(self, enemy_player_symbol):
+        player_symbol = self.get_opposite_symbol(enemy_player_symbol)
+
         if (self._map[0] == enemy_player_symbol and self._map[8] == enemy_player_symbol) or\
            (self._map[2] == enemy_player_symbol and self._map[6] == enemy_player_symbol):
             position = random.choice([1, 3, 5, 7])
@@ -173,7 +176,11 @@ class Game:
                 self._map[position] = player_symbol
                 return True
 
-        # strategy 2
+        return False
+
+    def strategy_tripple_with_corner(self, enemy_player_symbol):
+        player_symbol = self.get_opposite_symbol(enemy_player_symbol)
+
         if self._map[2] == enemy_player_symbol and self._map[3] == enemy_player_symbol:
             if self.is_cell_free(0):
                 self._map[0] = player_symbol
@@ -194,15 +201,52 @@ class Game:
                 self._map[2] = player_symbol
                 return True
 
-        # strategy 3
+        return False
+
+    def strategy_in_first_move_in_corner(self, enemy_player_symbol):
+        player_symbol = self.get_opposite_symbol(enemy_player_symbol)
+
         if self.enemy_start_in_corner(enemy_player_symbol):
             self._map[4] = player_symbol
             return True
 
-        #strategy 4
+        return False
+
+    def strategy_in_first_move_in_center(self, enemy_player_symbol):
+        player_symbol = self.get_opposite_symbol(enemy_player_symbol)
+
         if self.enemy_start_in_center(enemy_player_symbol):
             position = random.choice([0, 2, 6, 8])
             self._map[position] = player_symbol
+            return True
+
+        return False
+
+    def strategy_tripple_with_first_move_in_centre(self, enemy_player_symbol):
+        player_symbol = self.get_opposite_symbol(enemy_player_symbol)
+
+        if (self._map[0] == enemy_player_symbol and self._map[4] == enemy_player_symbol and self._map[8] == player_symbol) or\
+           (self._map[4] == enemy_player_symbol and self._map[8] == enemy_player_symbol and self._map[0] == player_symbol) or\
+           (self._map[2] == enemy_player_symbol and self._map[4] == enemy_player_symbol and self._map[6] == player_symbol) or\
+           (self._map[4] == enemy_player_symbol and self._map[6] == enemy_player_symbol and self._map[2] == player_symbol):
+            position = random.choice([0, 2, 6, 8])
+            if self.is_cell_free(position):
+                self._map[position] = player_symbol
+                return True
+
+        return False
+
+    def counterPlayerStrategyIfPossible(self, enemy_player_symbol):
+        if self.strategy_in_first_move_in_center(enemy_player_symbol):
+            return True
+
+        if self.strategy_in_first_move_in_corner(enemy_player_symbol):
+            return True
+
+        if self.strategy_tripple_with_opposite(enemy_player_symbol):
+            return True
+
+        if self.strategy_tripple_with_corner(enemy_player_symbol):
             return True
 
         return False
