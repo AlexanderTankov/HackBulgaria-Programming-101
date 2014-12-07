@@ -222,17 +222,21 @@ class Game:
 
         return False
 
-    def strategy_tripple_with_first_move_in_centre(self, enemy_player_symbol):
+    def strategy_tripple_with_first_move_in_center(self, enemy_player_symbol):
         player_symbol = self.get_opposite_symbol(enemy_player_symbol)
 
         if (self._map[0] == enemy_player_symbol and self._map[4] == enemy_player_symbol and self._map[8] == player_symbol) or\
            (self._map[4] == enemy_player_symbol and self._map[8] == enemy_player_symbol and self._map[0] == player_symbol) or\
            (self._map[2] == enemy_player_symbol and self._map[4] == enemy_player_symbol and self._map[6] == player_symbol) or\
            (self._map[4] == enemy_player_symbol and self._map[6] == enemy_player_symbol and self._map[2] == player_symbol):
+
             position = random.choice([0, 2, 6, 8])
-            if self.is_cell_free(position):
-                self._map[position] = player_symbol
-                return True
+            while True:
+                if self.is_cell_free(position):
+                    self._map[position] = player_symbol
+                    return True
+                else:
+                    position = random.choice([0, 2, 6, 8])
 
         return False
 
@@ -241,6 +245,9 @@ class Game:
             return True
 
         if self.strategy_in_first_move_in_corner(enemy_player_symbol):
+            return True
+
+        if self.strategy_tripple_with_first_move_in_center(enemy_player_symbol):
             return True
 
         if self.strategy_tripple_with_opposite(enemy_player_symbol):
