@@ -83,30 +83,34 @@ class Game:
     def can_win_any_row(self, player_symbol, num_of_row):
         return self.check_can_win(player_symbol, num_of_row * 3, (num_of_row * 3) + 1, (num_of_row * 3) + 2)
 
-    def set_simbol_to_free_cell(self, player_symbol, fst_num, snd_num, trd_num):
+    def set_symbol_to_free_cell(self, player_symbol, fst_num, snd_num, trd_num):
         if self._map[fst_num] == ".":
             self._map[fst_num] = player_symbol
+            return True
         elif self._map[snd_num] == ".":
             self._map[snd_num] = player_symbol
-        else:
+            return True
+        elif self._map[trd_num] == ".":
             self._map[trd_num] = player_symbol
+            return True
+        return False
 
     def win_if_possible(self, player_symbol):
         if self.can_win_left_diagonal(player_symbol):
-            self.set_simbol_to_free_cell(player_symbol, 0, 4, 8)
+            self.set_symbol_to_free_cell(player_symbol, 0, 4, 8)
             return True
 
         if self.can_win_right_diagonal(player_symbol):
-            self.set_simbol_to_free_cell(player_symbol, 2, 4, 6)
+            self.set_symbol_to_free_cell(player_symbol, 2, 4, 6)
             return True
 
         for x in range(0, 3):
             if self.can_win_any_column(player_symbol, x):
-                self.set_simbol_to_free_cell(player_symbol, x, x + 3, x + 6)
+                self.set_symbol_to_free_cell(player_symbol, x, x + 3, x + 6)
                 return True
 
             if self.can_win_any_row(player_symbol, x):
-                self.set_simbol_to_free_cell(player_symbol, x * 3, (x * 3) + 1, (x * 3) + 2)
+                self.set_symbol_to_free_cell(player_symbol, x * 3, (x * 3) + 1, (x * 3) + 2)
                 return True
 
         return False
@@ -117,20 +121,20 @@ class Game:
             player_symbol = "X"
 
         if self.can_win_left_diagonal(enemy_player_symbol):
-            self.set_simbol_to_free_cell(player_symbol, 0, 4, 8)
+            self.set_symbol_to_free_cell(player_symbol, 0, 4, 8)
             return True
 
         if self.can_win_right_diagonal(enemy_player_symbol):
-            self.set_simbol_to_free_cell(player_symbol, 2, 4, 6)
+            self.set_symbol_to_free_cell(player_symbol, 2, 4, 6)
             return True
 
         for x in range(0, 3):
             if self.can_win_any_column(enemy_player_symbol, x):
-                self.set_simbol_to_free_cell(player_symbol, x, x + 3, x + 6)
+                self.set_symbol_to_free_cell(player_symbol, x, x + 3, x + 6)
                 return True
 
             if self.can_win_any_row(enemy_player_symbol, x):
-                self.set_simbol_to_free_cell(player_symbol, x * 3, (x * 3) + 1, (x * 3) + 2)
+                self.set_symbol_to_free_cell(player_symbol, x * 3, (x * 3) + 1, (x * 3) + 2)
                 return True
 
         return False
@@ -259,6 +263,9 @@ class Game:
         return False
 
     def set_O_from_computer_imposible(self):
+        if self.is_have_not_free_cells():
+            return False
+
         if self.win_if_possible("O"):
             return True
 

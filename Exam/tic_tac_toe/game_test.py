@@ -68,5 +68,23 @@ class TestGame(unittest.TestCase):
                 flag = True
         self.assertTrue(flag)
 
+    def test_check_can_win(self):
+        self.test_game._map = ['X', 'O', '.', '.', 'X', '.', 'X', 'O', 'O']
+        self.assertTrue(self.test_game.check_can_win("X", 0, 3, 6))
+        self.assertFalse(self.test_game.check_can_win("X", 0, 4, 8))
+        self.assertFalse(self.test_game.check_can_win("O", 1, 4, 7))
+
+    def test_set_symbol_to_free_cell(self):
+        self.test_game._map = ['X', 'O', '.', '.', 'X', '.', 'X', 'O', 'O']
+        self.assertTrue(self.test_game.set_symbol_to_free_cell("X", 0, 3, 6))
+        self.assertFalse(self.test_game.set_symbol_to_free_cell("X", 0, 3, 6))
+        self.assertEqual(self.test_game._map, ['X', 'O', '.', 'X', 'X', '.', 'X', 'O', 'O'])
+
+    def test_win_if_possible(self):
+        self.test_game._map = ['X', 'O', '.', '.', 'X', '.', 'X', 'O', 'O']
+        self.assertTrue(self.test_game.win_if_possible("X"))
+        self.test_game._map = ['X', 'O', '.', '.', 'X', '.', 'X', 'O', 'O']
+        self.assertFalse(self.test_game.win_if_possible("O"))
+
 if __name__ == '__main__':
     unittest.main()
