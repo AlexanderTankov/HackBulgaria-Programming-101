@@ -182,28 +182,39 @@ class Game:
 
         return False
 
+    def counter_strategy_tripple_with_corner(self, player_symbol, enemy_player_symbol, fst_num, snd_num, dest):
+        if self._map[fst_num] == enemy_player_symbol and self._map[snd_num] == enemy_player_symbol:
+            if self.is_cell_free(dest):
+                self._map[dest] = player_symbol
+                return True
+        return False
+
     def strategy_tripple_with_corner(self, enemy_player_symbol):
         player_symbol = self.get_opposite_symbol(enemy_player_symbol)
 
-        if self._map[2] == enemy_player_symbol and self._map[3] == enemy_player_symbol:
-            if self.is_cell_free(0):
-                self._map[0] = player_symbol
-                return True
+        if self.counter_strategy_tripple_with_corner(player_symbol, enemy_player_symbol, 2, 3, 0):
+            return True
 
-        if self._map[5] == enemy_player_symbol and self._map[6] == enemy_player_symbol:
-            if self.is_cell_free(6):
-                self._map[6] = player_symbol
-                return True
+        if self.counter_strategy_tripple_with_corner(player_symbol, enemy_player_symbol, 5, 6, 8):
+            return True
 
-        if self._map[0] == enemy_player_symbol and self._map[5] == enemy_player_symbol:
-            if self.is_cell_free(8):
-                self._map[8] = player_symbol
-                return True
+        if self.counter_strategy_tripple_with_corner(player_symbol, enemy_player_symbol, 0, 5, 8):
+            return True
 
-        if self._map[3] == enemy_player_symbol and self._map[8] == enemy_player_symbol:
-            if self.is_cell_free(2):
-                self._map[2] = player_symbol
-                return True
+        if self.counter_strategy_tripple_with_corner(player_symbol, enemy_player_symbol, 3, 8, 2):
+            return True
+
+        if self.counter_strategy_tripple_with_corner(player_symbol, enemy_player_symbol, 0, 7, 6):
+            return True
+
+        if self.counter_strategy_tripple_with_corner(player_symbol, enemy_player_symbol, 1, 8, 2):
+            return True
+
+        if self.counter_strategy_tripple_with_corner(player_symbol, enemy_player_symbol, 1, 6, 0):
+            return True
+
+        if self.counter_strategy_tripple_with_corner(player_symbol, enemy_player_symbol, 2, 7, 8):
+            return True
 
         return False
 
