@@ -83,8 +83,29 @@ class TestGame(unittest.TestCase):
     def test_win_if_possible(self):
         self.test_game._map = ['X', 'O', '.', '.', 'X', '.', 'X', 'O', 'O']
         self.assertTrue(self.test_game.win_if_possible("X"))
+        self.test_game._map = ['X', '.', '.', '.', 'X', '.', 'X', '.', '.']
+        self.assertTrue(self.test_game.win_if_possible("X"))
+        self.test_game._map = ['X', '.', '.', '.', '.', '.', 'X', '.', '.']
+        self.assertTrue(self.test_game.win_if_possible("X"))
+        self.test_game._map = ['X', '.', '.', 'X', '.', '.', '.', '.', '.']
+        self.assertTrue(self.test_game.win_if_possible("X"))
+        self.test_game._map = ['X', '.', 'X', '.', '.', '.', '.', '.', '.']
+        self.assertTrue(self.test_game.win_if_possible("X"))
         self.test_game._map = ['X', 'O', '.', '.', 'X', '.', 'X', 'O', 'O']
         self.assertFalse(self.test_game.win_if_possible("O"))
+
+    def test_stop_player_from_winning_if_possible(self):
+        self.test_game._map = ['X', '.', '.', '.', 'X', '.', '.', '.', '.']
+        self.assertTrue(self.test_game.stop_player_from_winning_if_possible("X"))
+        self.test_game._map = ['.', '.', 'X', '.', 'X', '.', '.', '.', '.']
+        self.assertTrue(self.test_game.stop_player_from_winning_if_possible("X"))
+        self.test_game._map = ['X', '.', 'X', '.', '.', '.', '.', '.', '.']
+        self.assertTrue(self.test_game.stop_player_from_winning_if_possible("X"))
+        self.test_game._map = ['X', 'O', '.', '.', 'X', '.', 'X', 'O', 'O']
+        self.assertFalse(self.test_game.stop_player_from_winning_if_possible("O"))
+
+    def test_check_all_is_free_without_one(self):
+        
 
 if __name__ == '__main__':
     unittest.main()

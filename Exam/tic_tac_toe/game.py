@@ -116,9 +116,7 @@ class Game:
         return False
 
     def stop_player_from_winning_if_possible(self, enemy_player_symbol):
-        player_symbol = "O"
-        if enemy_player_symbol == "O":
-            player_symbol = "X"
+        player_symbol = self.get_opposite_symbol(enemy_player_symbol)
 
         if self.can_win_left_diagonal(enemy_player_symbol):
             self.set_symbol_to_free_cell(player_symbol, 0, 4, 8)
@@ -139,7 +137,7 @@ class Game:
 
         return False
 
-    def check_all_is_free_withoute_one(self, num_of_not_free_cell):
+    def check_all_is_free_without_one(self, num_of_not_free_cell):
         is_all_free = True
         for x in range(0, 9):
             if x == num_of_not_free_cell:
@@ -150,18 +148,18 @@ class Game:
 
     def enemy_start_in_corner(self, enemy_player_symbol):
         if self._map[0] == enemy_player_symbol:
-            return self.check_all_is_free_withoute_one(0)
+            return self.check_all_is_free_without_one(0)
         if self._map[2] == enemy_player_symbol:
-            return self.check_all_is_free_withoute_one(2)
+            return self.check_all_is_free_without_one(2)
         if self._map[6] == enemy_player_symbol:
-            return self.check_all_is_free_withoute_one(6)
+            return self.check_all_is_free_without_one(6)
         if self._map[8] == enemy_player_symbol:
-            return self.check_all_is_free_withoute_one(8)
+            return self.check_all_is_free_without_one(8)
         return False
 
     def enemy_start_in_center(self, enemy_player_symbol):
         if self._map[4] == enemy_player_symbol:
-            return self.check_all_is_free_withoute_one(4)
+            return self.check_all_is_free_without_one(4)
         return False
 
     def get_opposite_symbol(self, enemy_player_symbol):
