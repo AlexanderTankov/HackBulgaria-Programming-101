@@ -15,7 +15,8 @@ class MusicCrawler():
         result = Playlist("Rock'n'roll")
         music_files = [f for f in os.listdir(self.path) if f.endswith('.mp3') or f.endswith('.MP3')]
         for song in music_files:
-            audio = MP3(song)
+            audio = MP3(self.path + "/" + song)
+            print(audio)
             my_new_song = Song(audio["TIT2"], audio["TPE1"], audio["TALB"], 0, int(audio.info.length), audio.info.bitrate)
             result.add_song(my_new_song)
         return result
